@@ -31,8 +31,47 @@ body {
     BlinkMacSystemFont,
     "SF Pro Text",
     sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: contain;
 }
 
 button {
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Slim scrollbars for dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Hide scrollbar on mobile but keep scrollable */
+@media (max-width: 640px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  * {
+    scrollbar-width: none;
+  }
+}
+
+/* Smooth focus transitions */
+input:focus,
+button:focus-visible {
+  transition:
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
 }

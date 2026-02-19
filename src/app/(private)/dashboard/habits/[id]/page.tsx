@@ -243,9 +243,9 @@ export default function HabitDetail() {
         onConfirm={deleteHabit}
         onCancel={() => setShowDeleteModal(false)}
       />
-      <div className="max-w-5xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 py-6 sm:py-10 sm:px-6 lg:px-8">
         {/* Top bar */}
-        <div className="mb-6 flex items-center justify-between gap-4">
+        <div className="mb-4 sm:mb-6 flex items-center justify-between gap-4">
           <motion.button
             type="button"
             onClick={() => router.push("/dashboard")}
@@ -273,18 +273,18 @@ export default function HabitDetail() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="mb-8 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800"
+          className="mb-6 sm:mb-8 overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 bg-linear-to-br from-slate-900 via-slate-900 to-slate-800"
         >
-          <div className="p-8">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+          <div className="p-5 sm:p-8">
+            <div className="flex flex-col gap-4 sm:gap-6 sm:flex-row sm:items-start sm:justify-between">
               <div className="min-w-0">
                 <p className="text-[10px] font-semibold uppercase tracking-widest text-orange-400/80">
                   Habit
                 </p>
-                <h1 className="mt-2 text-3xl font-semibold text-slate-50 sm:text-4xl">
+                <h1 className="mt-1.5 sm:mt-2 text-2xl font-semibold text-slate-50 sm:text-3xl lg:text-4xl">
                   {habit.name}
                 </h1>
-                <p className="mt-1.5 text-sm text-slate-500">
+                <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-slate-500">
                   Since{" "}
                   {new Date(habit.created_at).toLocaleDateString("en-US", {
                     month: "long",
@@ -300,7 +300,7 @@ export default function HabitDetail() {
                 disabled={doneToday || markingDone}
                 whileHover={!doneToday && !markingDone ? { scale: 1.03 } : {}}
                 whileTap={!doneToday && !markingDone ? { scale: 0.97 } : {}}
-                className={`shrink-0 inline-flex items-center gap-2 rounded-2xl px-6 py-3 text-sm font-semibold transition ${
+                className={`shrink-0 w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl sm:rounded-2xl px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-semibold transition ${
                   doneToday
                     ? "bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/30 cursor-default"
                     : markingDone
@@ -326,39 +326,39 @@ export default function HabitDetail() {
             </div>
 
             {/* Stats row */}
-            <div className="mt-8 grid grid-cols-3 divide-x divide-white/10 border-t border-white/10 pt-6">
-              <div className="pr-6">
+            <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-0 sm:divide-x sm:divide-white/10 border-t border-white/10 pt-5 sm:pt-6">
+              <div className="flex items-center gap-3 sm:block sm:pr-6">
                 <div className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-slate-500">
                   <Flame className="h-3 w-3 text-orange-400" />
                   Current streak
                 </div>
-                <div className="mt-2 text-3xl font-bold text-orange-400">
+                <div className="ml-auto sm:ml-0 sm:mt-2 text-2xl sm:text-3xl font-bold text-orange-400">
                   {habit.current_streak}
-                  <span className="ml-1 text-sm font-normal text-slate-500">
+                  <span className="ml-1 text-xs sm:text-sm font-normal text-slate-500">
                     days
                   </span>
                 </div>
               </div>
-              <div className="px-6">
+              <div className="flex items-center gap-3 sm:block sm:px-6">
                 <div className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-slate-500">
                   <Trophy className="h-3 w-3 text-yellow-500" />
                   Best streak
                 </div>
-                <div className="mt-2 text-3xl font-bold text-slate-50">
+                <div className="ml-auto sm:ml-0 sm:mt-2 text-2xl sm:text-3xl font-bold text-slate-50">
                   {habit.longest_streak}
-                  <span className="ml-1 text-sm font-normal text-slate-500">
+                  <span className="ml-1 text-xs sm:text-sm font-normal text-slate-500">
                     days
                   </span>
                 </div>
               </div>
-              <div className="pl-6">
+              <div className="flex items-center gap-3 sm:block sm:pl-6">
                 <div className="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-wider text-slate-500">
                   <CheckCircle2 className="h-3 w-3 text-emerald-400" />
                   Total done
                 </div>
-                <div className="mt-2 text-3xl font-bold text-slate-50">
+                <div className="ml-auto sm:ml-0 sm:mt-2 text-2xl sm:text-3xl font-bold text-slate-50">
                   {doneRecords.length}
-                  <span className="ml-1 text-sm font-normal text-slate-500">
+                  <span className="ml-1 text-xs sm:text-sm font-normal text-slate-500">
                     days
                   </span>
                 </div>
@@ -374,7 +374,7 @@ export default function HabitDetail() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.35 }}
-            className="lg:col-span-3 rounded-2xl border border-white/10 bg-slate-900/70 p-6"
+            className="lg:col-span-3 rounded-2xl border border-white/10 bg-slate-900/70 p-4 sm:p-6"
           >
             <div className="mb-5 flex items-center justify-between gap-3">
               <div className="flex items-center gap-2">
@@ -430,7 +430,7 @@ export default function HabitDetail() {
                 const isFuture = dateStr > todayStr;
 
                 let cls =
-                  "flex h-8 w-8 items-center justify-center rounded-full mx-auto text-xs transition";
+                  "flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full mx-auto text-[11px] sm:text-xs transition";
 
                 if (isDone) {
                   cls +=
@@ -480,7 +480,7 @@ export default function HabitDetail() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.35 }}
-            className="lg:col-span-2 rounded-2xl border border-white/10 bg-slate-900/70 p-6"
+            className="lg:col-span-2 rounded-2xl border border-white/10 bg-slate-900/70 p-4 sm:p-6"
           >
             <h2 className="mb-4 text-sm font-semibold text-slate-50">
               Recent history

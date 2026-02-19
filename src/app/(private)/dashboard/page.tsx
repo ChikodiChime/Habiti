@@ -239,7 +239,7 @@ export default function Dashboard() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 12 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="fixed left-1/2 top-1/2 z-50 w-full max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-slate-900 p-6 shadow-[0_32px_80px_rgba(0,0,0,0.8)]"
+              className="fixed left-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-white/10 bg-slate-900 p-5 sm:p-6 shadow-[0_32px_80px_rgba(0,0,0,0.8)]"
             >
               <div className="mb-4 flex items-start justify-between gap-3">
                 <div>
@@ -301,22 +301,22 @@ export default function Dashboard() {
         )}
       </AnimatePresence>
 
-      <div className="max-w-5xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 py-6 sm:py-10 sm:px-6 lg:px-8">
         <motion.header
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className="mb-8"
+          className="mb-6 sm:mb-8"
         >
-          <h1 className="text-3xl font-semibold text-slate-50 sm:text-4xl">
+          <h1 className="text-2xl font-semibold text-slate-50 sm:text-3xl lg:text-4xl">
             Your habits
           </h1>
-          <p className="mt-2 text-sm text-slate-400">
+          <p className="mt-1.5 sm:mt-2 text-sm text-slate-400">
             Keep the chain unbroken.
           </p>
         </motion.header>
 
-        <section className="mb-8">
+        <section className="mb-5 sm:mb-8">
           <AddHabitForm onAdd={createHabit} />
         </section>
 
@@ -554,14 +554,14 @@ function AddHabitForm({ onAdd }: { onAdd: (name: string) => void }) {
         value={name}
         onChange={(e) => setName(e.target.value)}
         placeholder="Name a habit you care about..."
-        className="flex-1 rounded-xl border border-transparent bg-slate-900/60 px-3 py-2 text-sm text-slate-50 placeholder:text-slate-500 outline-none ring-0 transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/40"
+        className="flex-1 rounded-xl border border-transparent bg-slate-900/60 px-3 py-2.5 sm:py-2 text-sm text-slate-50 placeholder:text-slate-500 outline-none ring-0 transition focus:border-orange-500 focus:ring-2 focus:ring-orange-500/40"
       />
       <motion.button
         type="submit"
         disabled={!name.trim() || isSubmitting}
         whileHover={name.trim() && !isSubmitting ? { scale: 1.02 } : {}}
         whileTap={name.trim() && !isSubmitting ? { scale: 0.97 } : {}}
-        className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-orange-500 px-4 py-2 text-sm font-medium text-white shadow-[0_12px_35px_rgba(249,115,22,0.5)] transition hover:bg-orange-400 hover:shadow-[0_16px_45px_rgba(249,115,22,0.7)] disabled:opacity-60 disabled:shadow-none"
+        className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-orange-500 px-4 py-2.5 sm:py-2 text-sm font-medium text-white shadow-[0_12px_35px_rgba(249,115,22,0.5)] transition hover:bg-orange-400 hover:shadow-[0_16px_45px_rgba(249,115,22,0.7)] disabled:opacity-60 disabled:shadow-none"
       >
         <Plus className="h-4 w-4" />
         {isSubmitting ? "Adding..." : "Add Habit"}
@@ -593,28 +593,28 @@ function HabitCard({
       exit={{ opacity: 0, y: -6 }}
       transition={{ duration: 0.25, ease: "easeOut" }}
       onClick={onClick}
-      className="group cursor-pointer rounded-2xl border border-white/10 bg-slate-900/60 p-5 transition hover:border-orange-500/60 hover:bg-slate-900"
+      className="group cursor-pointer rounded-2xl border border-white/10 bg-slate-900/60 p-4 sm:p-5 transition hover:border-orange-500/60 hover:bg-slate-900"
     >
-      <div className="flex items-center justify-between gap-4">
-        <div className="min-w-0">
-          <h3 className="truncate text-base font-semibold text-slate-50 sm:text-lg">
+      <div className="flex items-start justify-between gap-3 sm:items-center sm:gap-4">
+        <div className="min-w-0 flex-1">
+          <h3 className="truncate text-sm font-semibold text-slate-50 sm:text-base lg:text-lg">
             {habit.name}
           </h3>
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="mt-0.5 sm:mt-1 text-[11px] sm:text-xs text-slate-500">
             Started {new Date(habit.created_at).toLocaleDateString()}
           </p>
         </div>
-        <div className="flex shrink-0 items-center gap-3">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <div className="text-right">
-            <div className="flex items-center justify-end gap-1 text-2xl font-semibold text-orange-400">
-              <Flame className="h-5 w-5" />
+            <div className="flex items-center justify-end gap-1 text-xl sm:text-2xl font-semibold text-orange-400">
+              <Flame className="h-4 w-4 sm:h-5 sm:w-5" />
               {habit.current_streak}
             </div>
-            <div className="text-[11px] uppercase tracking-wide text-slate-500">
+            <div className="text-[10px] sm:text-[11px] uppercase tracking-wide text-slate-500">
               day streak
             </div>
           </div>
-          {/* Mark done button */}
+          {/* Mark done button — always visible on mobile (no hover) */}
           <button
             type="button"
             disabled={doneToday || marking}
@@ -622,12 +622,12 @@ function HabitCard({
               e.stopPropagation();
               onMarkDone();
             }}
-            className={`flex h-8 w-8 items-center justify-center rounded-full border transition ${
+            className={`flex h-8 w-8 sm:h-8 sm:w-8 items-center justify-center rounded-full border transition ${
               doneToday
                 ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-400 cursor-default"
                 : marking
                   ? "border-orange-500/40 bg-orange-500/10 text-orange-400 cursor-wait"
-                  : "border-white/10 text-slate-600 hover:border-orange-500/50 hover:bg-orange-500/10 hover:text-orange-400 opacity-0 group-hover:opacity-100"
+                  : "border-white/10 text-slate-500 sm:text-slate-600 sm:opacity-0 sm:group-hover:opacity-100 hover:border-orange-500/50 hover:bg-orange-500/10 hover:text-orange-400"
             }`}
             title={doneToday ? "Done today" : "Mark as done"}
           >
@@ -643,11 +643,11 @@ function HabitCard({
               e.stopPropagation();
               onDelete();
             }}
-            className="flex h-7 w-7 items-center justify-center rounded-full text-slate-600 opacity-0 transition hover:bg-red-500/10 hover:text-red-400 group-hover:opacity-100"
+            className="flex h-7 w-7 items-center justify-center rounded-full text-slate-500 sm:text-slate-600 sm:opacity-0 transition hover:bg-red-500/10 hover:text-red-400 sm:group-hover:opacity-100"
           >
             <Trash2 className="h-3.5 w-3.5" />
           </button>
-          <ChevronRight className="h-4 w-4 text-slate-600 transition group-hover:text-orange-400" />
+          <ChevronRight className="hidden sm:block h-4 w-4 text-slate-600 transition group-hover:text-orange-400" />
         </div>
       </div>
     </motion.div>
